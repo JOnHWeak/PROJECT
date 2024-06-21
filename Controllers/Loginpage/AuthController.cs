@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using SWPApp.Utils;
 using BCrypt; // Ensure this is referencing the correct BCrypt package
 
-
 namespace SWPApp.Controllers.Loginpage
 {
     // Login and Register Models
@@ -29,6 +28,9 @@ namespace SWPApp.Controllers.Loginpage
 
     public class RegisterModel
     {
+        [Required]
+        public string? CustomerName { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -64,7 +66,6 @@ namespace SWPApp.Controllers.Loginpage
             _logger = logger;
         }
 
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -83,6 +84,7 @@ namespace SWPApp.Controllers.Loginpage
             var confirmationCode = GenerateConfirmationCode();
             var customer = new Customer
             {
+                CustomerName = model.CustomerName, // Add CustomerName here
                 Email = email,
                 Password = hashedPassword,
                 Status = false, // Initially not confirmed
