@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.AdminClient
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -172,5 +174,78 @@ namespace SWPApp.Controllers
 
             return Ok();
         }
+
+        // List all Customers
+        [HttpGet("list-customers")]
+        public async Task<ActionResult<IEnumerable<Customer>>> ListCustomers()
+        {
+            var customers = await _context.Customers
+                .Select(c => new
+                {
+                    c.CustomerId,
+                    c.CustomerName,
+                    c.Email,
+                })
+                .ToListAsync();
+
+            return Ok(customers);
+        }
+
+        // List all Employees
+        [HttpGet("list-employees")]
+        public async Task<ActionResult<IEnumerable<Employee>>> ListEmployees()
+        {
+            var employees = await _context.Employees
+                .Select(e => new
+                {
+                    e.EmployeeId,
+                    e.EmployeeName,
+                    e.Email,
+                })
+                .ToListAsync();
+
+            return Ok(employees);
+        }
+        // List all Requests with Details
+        [HttpGet("list-requests-with-details")]
+        public async Task<ActionResult<IEnumerable<object>>> ListRequestsWithDetails()
+        {
+            var requestsWithDetails = await _context.Requests
+                .Join(_context.RequestDetails,
+                    r => r.RequestId,
+                    rd => rd.RequestId,
+                    (r, rd) => new
+                    {
+                        r.RequestId,
+                        r.CustomerId,
+                        r.RequestDate,
+                        r.ServiceType,
+                        rd.ServiceId,
+                        rd.PaymentStatus,
+                        rd.PaymentMethod
+                    })
+                .ToListAsync();
+
+            return Ok(requestsWithDetails);
+        }
+        // Accept Request
+        [HttpPost("accept-request/{id}")]
+        public async Task<IActionResult> AcceptRequest(int id)
+        {
+            var request = await _context.Requests.FindAsync(id);
+
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            request.Status = true; // Assuming 1 corresponds to 'true' and 0 corresponds to 'false'
+
+            _context.Requests.Update(request);
+            await _context.SaveChangesAsync();
+
+            return Ok(request);
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SWPApp.Controllers.Loginpage;
+using SWPApp.Controllers;
 using SWPApp.DTO;
 using SWPApp.Models;
 using System.ComponentModel.DataAnnotations;

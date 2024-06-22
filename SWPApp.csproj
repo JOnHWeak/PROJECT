@@ -12,7 +12,6 @@
     <Compile Remove="Controllers\FeedbackPage\**" />
     <Compile Remove="Controllers\InformationPage\**" />
     <Compile Remove="Controllers\ManagerPage\**" />
-    <Compile Remove="Controllers\NewFolder\**" />
     <Compile Remove="Controllers\PaymentPage\**" />
     <Compile Remove="Controllers\ReportPage\**" />
     <Compile Remove="Controllers\ServicePage\**" />
@@ -21,7 +20,6 @@
     <Content Remove="Controllers\FeedbackPage\**" />
     <Content Remove="Controllers\InformationPage\**" />
     <Content Remove="Controllers\ManagerPage\**" />
-    <Content Remove="Controllers\NewFolder\**" />
     <Content Remove="Controllers\PaymentPage\**" />
     <Content Remove="Controllers\ReportPage\**" />
     <Content Remove="Controllers\ServicePage\**" />
@@ -30,7 +28,6 @@
     <EmbeddedResource Remove="Controllers\FeedbackPage\**" />
     <EmbeddedResource Remove="Controllers\InformationPage\**" />
     <EmbeddedResource Remove="Controllers\ManagerPage\**" />
-    <EmbeddedResource Remove="Controllers\NewFolder\**" />
     <EmbeddedResource Remove="Controllers\PaymentPage\**" />
     <EmbeddedResource Remove="Controllers\ReportPage\**" />
     <EmbeddedResource Remove="Controllers\ServicePage\**" />
@@ -39,7 +36,6 @@
     <None Remove="Controllers\FeedbackPage\**" />
     <None Remove="Controllers\InformationPage\**" />
     <None Remove="Controllers\ManagerPage\**" />
-    <None Remove="Controllers\NewFolder\**" />
     <None Remove="Controllers\PaymentPage\**" />
     <None Remove="Controllers\ReportPage\**" />
     <None Remove="Controllers\ServicePage\**" />
