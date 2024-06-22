@@ -12,8 +12,8 @@ using SWPApp.Models;
 namespace SWPApp.Migrations
 {
     [DbContext(typeof(DiamondAssesmentSystemDBContext))]
-    [Migration("20240611103258_AddTokenFieldsToCustomer")]
-    partial class AddTokenFieldsToCustomer
+    [Migration("20240622152302_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,12 @@ namespace SWPApp.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConfirmationToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ConfirmationTokenExpires")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
@@ -85,7 +91,10 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IDcard")
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IDCard")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LoginToken")
@@ -98,7 +107,7 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResetToken")
@@ -158,6 +167,12 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LoginToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LoginTokenExpires")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -166,9 +181,8 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -176,6 +190,33 @@ namespace SWPApp.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("SWPApp.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("SWPApp.Models.Request", b =>
@@ -231,9 +272,8 @@ namespace SWPApp.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("PaymentStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("RequestId", "ServiceId");
 
@@ -390,6 +430,17 @@ namespace SWPApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Request");
+                });
+
+            modelBuilder.Entity("SWPApp.Models.Feedback", b =>
+                {
+                    b.HasOne("SWPApp.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("SWPApp.Models.Request", b =>

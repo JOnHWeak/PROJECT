@@ -10,9 +10,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using SWPApp.Utils;
-using BCrypt; // Ensure this is referencing the correct BCrypt package
+using BCrypt;
 
-namespace SWPApp.Controllers.Loginpage
+namespace SWPApp.Controllers
 {
     // Login and Register Models
     public class LoginModel
@@ -36,8 +36,6 @@ namespace SWPApp.Controllers.Loginpage
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-            ErrorMessage = "Password must be at least 8 characters long and contain at least one number and one special character.")]
         public string Password { get; set; }
 
         [Required]
@@ -142,22 +140,46 @@ namespace SWPApp.Controllers.Loginpage
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var email = loginModel.Email;
+            var email = loginModel.Email.ToLower();
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email.ToLower() == email);
 
-            if (customer == null || !BCrypt.Net.BCrypt.Verify(loginModel.Password, customer.Password))
+            if (customer == null && employee == null)
             {
                 return Unauthorized("Invalid email or password");
             }
 
-            var loginToken = GenerateToken();
-            customer.LoginToken = loginToken;
-            customer.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
-            customer.Status = true; // Login successful, set status to 1
-            await _context.SaveChangesAsync();
+            if (customer != null && BCrypt.Net.BCrypt.Verify(loginModel.Password, customer.Password))
+            {
+                var loginToken = GenerateToken();
+                customer.LoginToken = loginToken;
+                customer.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+                customer.Status = true; // Login successful, set status to true
+                await _context.SaveChangesAsync();
 
-            // Return the login token
-            return Ok(new { Message = "Login successful.", LoginToken = loginToken });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null });
+            }
+
+            if (employee != null)
+            {
+                var loginToken = GenerateToken();
+                employee.LoginToken = loginToken;
+                employee.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+                employee.Status = true; // Login successful, set status to true
+                await _context.SaveChangesAsync();
+
+                // Determine the role-specific message
+                string roleSpecificMessage = employee.Role switch
+                {
+                    0 => "Staff login successful",
+                    1 => "Admin login successful",
+                    _ => "Login successful"
+                };
+
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role });
+            }
+
+            return Unauthorized("Invalid email or password");
         }
 
         [HttpPost("forgot-password")]

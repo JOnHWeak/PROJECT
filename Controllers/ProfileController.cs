@@ -8,9 +8,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using BCrypt.Net; // Ensure this is referencing the correct BCrypt package
+using BCrypt.Net;
 
-namespace SWPApp.Controllers.ProfilePage
+namespace SWPApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
