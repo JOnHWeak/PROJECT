@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SWPApp.Utils;
 using BCrypt;
+using Azure.Messaging;
 
 namespace SWPApp.Controllers
 {
@@ -163,7 +164,7 @@ namespace SWPApp.Controllers
                 customer.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null, customerName = customer.CustomerName });
             }
 
             if (employee != null)
@@ -182,7 +183,7 @@ namespace SWPApp.Controllers
                     _ => "Login successful"
                 };
 
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, CustomerName = customer.CustomerName });
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, });      
             }
 
             return Unauthorized("Invalid email or password");
