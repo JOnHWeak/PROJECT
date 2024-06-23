@@ -134,8 +134,14 @@ namespace SWPApp.Controllers
                 return StatusCode(500, "An error occurred while confirming the email.");
             }
 
-            return Ok(new { Message = "Email confirmed successfully. You are now logged in.", LoginToken = loginToken });
+            return Ok(new
+            {
+                Message = "Email confirmed successfully. You are now logged in.",
+                LoginToken = loginToken,
+                CustomerName = customer.CustomerName
+            });
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
