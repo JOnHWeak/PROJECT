@@ -17,10 +17,7 @@ namespace SWPApp.DTO
         [Required]
         public string ResetCode { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-            ErrorMessage = "Password must be at least 8 characters long and contain at least one number and one special character.")]
+        [Required]               
         public string NewPassword { get; set; }
 
         [Required]
