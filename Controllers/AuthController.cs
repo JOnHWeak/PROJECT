@@ -240,8 +240,9 @@ namespace SWPApp.Controllers
             customer.ResetTokenExpires = null; // Invalidate the token expiration
             await _context.SaveChangesAsync();
 
-            return Ok("Password reset successful.");
+            return Ok(new { message = "Password reset successful.", customerName = customer.CustomerName });
         }
+
 
         // Token generation method
         private string GenerateToken()
