@@ -184,7 +184,7 @@ namespace SWPApp.Controllers
                     _ => "Login successful"
                 };
 
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, });      
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, EmployeeName = employee.EmployeeName });      
             }
 
             return Unauthorized("Invalid email or password");
