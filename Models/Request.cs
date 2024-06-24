@@ -33,7 +33,7 @@ namespace SWPApp.Models
         public Request Request { get; set; }
         public Service Service { get; set; }
     }
-    public class RequestDTO
+    public class CreateRequestDto
     {
         public int CustomerId { get; set; }
         public DateTime RequestDate { get; set; }
