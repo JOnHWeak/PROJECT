@@ -27,22 +27,21 @@ namespace SWPApp.Controllers
             _logger = logger;
         }
 
-        public class ProfileModels
+        public class UpdateProfileModel
         {
             public string? CustomerName { get; set; }
 
             [EmailAddress]
-            public string Email { get; set; }
-
-            public string Password { get; set; }
+            public string? Email { get; set; }
 
             [Phone]
-            public string? PhoneNumber { get; set; } // Nullable string for PhoneNumber
+            public string? PhoneNumber { get; set; }
 
-            public string? IDCard { get; set; } // Nullable string for IDCard
+            public string? IDCard { get; set; }
 
-            public string? Address { get; set; } // Nullable string for Address
+            public string? Address { get; set; }
         }
+
 
         public class ChangePasswordModel
         {
@@ -50,8 +49,7 @@ namespace SWPApp.Controllers
             public string CurrentPassword { get; set; }
 
             [Required]
-            [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-                ErrorMessage = "Password must be at least 8 characters long and contain at least one number and one special character.")]
+            [RegularExpression(@"^.{8,}$", ErrorMessage = "Password must be at least 8 characters long.")]
             public string NewPassword { get; set; }
 
             [Required]
@@ -59,9 +57,22 @@ namespace SWPApp.Controllers
             public string ConfirmNewPassword { get; set; }
         }
 
-        // Endpoint to update CustomerName
-        [HttpPut("update-customername")]
-        public async Task<IActionResult> UpdateCustomerName([FromBody] string customerName)
+        // Get Customer by ID
+        [HttpGet("customer/{id}")]
+        public async Task<IActionResult> GetCustomer(int id)
+        {
+            var customer = await _context.Customers.FindAsync(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
+
+        [HttpPut("update-profile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileModel model)
         {
             var customer = await GetCustomerFromContext();
 
@@ -70,13 +81,41 @@ namespace SWPApp.Controllers
                 return NotFound("Customer not found");
             }
 
-            customer.CustomerName = customerName;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!string.IsNullOrEmpty(model.CustomerName))
+            {
+                customer.CustomerName = model.CustomerName;
+            }
+
+            if (!string.IsNullOrEmpty(model.Email))
+            {
+                customer.Email = model.Email;
+            }
+
+            if (!string.IsNullOrEmpty(model.PhoneNumber))
+            {
+                customer.PhoneNumber = model.PhoneNumber;
+            }
+
+            if (!string.IsNullOrEmpty(model.IDCard))
+            {
+                customer.IDCard = model.IDCard;
+            }
+
+            if (!string.IsNullOrEmpty(model.Address))
+            {
+                customer.Address = model.Address;
+            }
+
             await _context.SaveChangesAsync();
 
-            return Ok($"Customer name updated to: {customerName}");
+            return Ok("Profile updated successfully.");
         }
-
-        // Endpoint to change password
+        //Change password
         [HttpPut("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
         {
@@ -113,43 +152,9 @@ namespace SWPApp.Controllers
             return Ok("Password changed successfully.");
         }
 
-        // Endpoint to update PhoneNumber
-        [HttpPut("update-phonenumber")]
-        public async Task<IActionResult> UpdatePhoneNumber([FromBody] string phoneNumber)
-        {
-            var customer = await GetCustomerFromContext();
-
-            if (customer == null)
-            {
-                return NotFound("Customer not found");
-            }
-
-            customer.PhoneNumber = phoneNumber;
-            await _context.SaveChangesAsync();
-
-            return Ok($"Phone number updated to: {phoneNumber}");
-        }
-
-        [HttpPut("update-address")]
-        public async Task<IActionResult> UpdateAddress([FromBody] string address)
-        {
-            var customer = await GetCustomerFromContext();
-
-            if (customer == null)
-            {
-                return NotFound("Customer not found");
-            }
-
-            customer.Address = address;
-            await _context.SaveChangesAsync();
-
-            return Ok($"Address updated to: {address}");
-        }
-
         // Helper method to retrieve customer based on some context (e.g., token, session, etc.)
         private async Task<Customer> GetCustomerFromContext()
         {
-            // Example: Retrieve customer based on token or any other context
             var customerId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (customerId == null)
@@ -182,30 +187,8 @@ namespace SWPApp.Controllers
             var random = new Random();
             return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        }    
+        
 
-        // Logout endpoint
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
-        {
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true);
-
-            if (customer == null)
-            {
-                return Unauthorized("You must Login");
-            }
-
-            // Invalidate the login token
-            customer.LoginToken = null;
-            customer.LoginTokenExpires = null;
-
-            // Set status to indicate logged out
-            customer.Status = false;
-
-            _context.Customers.Update(customer);
-            await _context.SaveChangesAsync();
-
-            return Ok("Logout successful.");
-        }
     }
 }

@@ -140,10 +140,10 @@ namespace SWPApp.Controllers
             {
                 Message = "Email confirmed successfully. You are now logged in.",
                 LoginToken = loginToken,
-                CustomerName = customer.CustomerName
+                CustomerName = customer.CustomerName,
+                CustomerId = customer.CustomerId
             });
         }
-
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
@@ -165,7 +165,7 @@ namespace SWPApp.Controllers
                 customer.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null, customerName = customer.CustomerName });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null, CustomerName = customer.CustomerName, CustomerId = customer.CustomerId });
             }
 
             if (employee != null)
@@ -184,7 +184,7 @@ namespace SWPApp.Controllers
                     _ => "Login successful"
                 };
 
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, EmployeeName = employee.EmployeeName });      
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, EmployeeName = employee.EmployeeName });
             }
 
             return Unauthorized("Invalid email or password");
@@ -244,7 +244,6 @@ namespace SWPApp.Controllers
 
             return Ok(new { message = "Password reset successful.", customerName = customer.CustomerName });
         }
-
 
         // Token generation method
         private string GenerateToken()

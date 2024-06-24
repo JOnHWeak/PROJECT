@@ -18,6 +18,7 @@ namespace SWPApp.Controllers.AdminClient
             _context = context;
         }
 
+
         // Create Employee
         [HttpPost("create-employee")]
         public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
@@ -191,21 +192,25 @@ namespace SWPApp.Controllers.AdminClient
             return Ok(customers);
         }
 
-        // List all Employees
-        [HttpGet("list-employees")]
-        public async Task<ActionResult<IEnumerable<Employee>>> ListEmployees()
+        // List all Employees where role != 1
+        [HttpGet("list-employees-except-role1")]
+        public async Task<ActionResult<IEnumerable<Employee>>> ListEmployeesExceptRole1()
         {
             var employees = await _context.Employees
+                .Where(e => e.Role != 1)
                 .Select(e => new
                 {
                     e.EmployeeId,
                     e.EmployeeName,
                     e.Email,
+                    e.Role,                    
+                   e.Phone
                 })
                 .ToListAsync();
 
             return Ok(employees);
         }
+
         // List all Requests with Details
         [HttpGet("list-requests-with-details")]
         public async Task<ActionResult<IEnumerable<object>>> ListRequestsWithDetails()
