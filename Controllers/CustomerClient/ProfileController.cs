@@ -70,10 +70,10 @@ namespace SWPApp.Controllers.CustomerClient
             return Ok(customer);
         }
 
-        [HttpPut("update-profile")]
-        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileModel model)
+        [HttpPost("update-profile/{id}")]
+        public async Task<IActionResult> UpdateProfile(int id, [FromBody] UpdateProfileModel model)
         {
-            var customer = await GetCustomerFromContext();
+            var customer = await _context.Customers.FindAsync(id);
 
             if (customer == null)
             {
