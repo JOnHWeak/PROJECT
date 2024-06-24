@@ -4,7 +4,7 @@ using SWPApp.DTO;
 using SWPApp.Models;
 using System.Threading.Tasks;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.CustomerClient
 {
     [Route("api/[controller]")]
     [ApiController]

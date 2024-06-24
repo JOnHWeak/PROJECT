@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SWPApp.Controllers;
 using SWPApp.DTO;
 using SWPApp.Models;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +9,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using BCrypt.Net;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.CustomerClient
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -187,8 +186,8 @@ namespace SWPApp.Controllers
             var random = new Random();
             return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
-        }    
-        
+        }
+
 
     }
 }

@@ -15,7 +15,7 @@ namespace SWPApp.Models
         public int EmployeeId { get; set; }
         public int? DiamondId { get; set; }
         public string ServiceId { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; } // Changed from bool to string
 
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
@@ -32,5 +32,15 @@ namespace SWPApp.Models
 
         public Request Request { get; set; }
         public Service Service { get; set; }
+    }
+    public class RequestDTO
+    {
+        public int CustomerId { get; set; }
+        public DateTime RequestDate { get; set; }
+        public string ServiceType { get; set; }
+        public int EmployeeId { get; set; }
+        public int? DiamondId { get; set; }
+        public string ServiceId { get; set; }
+        public string Status { get; set; }
     }
 }

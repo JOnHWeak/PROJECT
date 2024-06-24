@@ -186,6 +186,9 @@ namespace SWPApp.Controllers.AdminClient
                     c.CustomerId,
                     c.CustomerName,
                     c.Email,
+                    c.Address,
+                    c.IDCard,
+                    c.PhoneNumber
                 })
                 .ToListAsync();
 
@@ -232,25 +235,7 @@ namespace SWPApp.Controllers.AdminClient
                 .ToListAsync();
 
             return Ok(requestsWithDetails);
-        }
-        // Accept Request
-        [HttpPost("accept-request/{id}")]
-        public async Task<IActionResult> AcceptRequest(int id)
-        {
-            var request = await _context.Requests.FindAsync(id);
-
-            if (request == null)
-            {
-                return NotFound();
-            }
-
-            request.Status = true; // Assuming 1 corresponds to 'true' and 0 corresponds to 'false'
-
-            _context.Requests.Update(request);
-            await _context.SaveChangesAsync();
-
-            return Ok(request);
-        }
+        }      
 
     }
 }
