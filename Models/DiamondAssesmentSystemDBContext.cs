@@ -2,11 +2,10 @@
 
 namespace SWPApp.Models
 {
-    // Data/ApplicationDbContext.cs
     public class DiamondAssesmentSystemDBContext : DbContext
     {
-        public DiamondAssesmentSystemDBContext(DbContextOptions<DiamondAssesmentSystemDBContext> options) :
-            base(options)
+        public DiamondAssesmentSystemDBContext(DbContextOptions<DiamondAssesmentSystemDBContext> options)
+            : base(options)
         { }
 
         public DbSet<Customer> Customers { get; set; }
@@ -20,13 +19,19 @@ namespace SWPApp.Models
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<CommitmentRecord> CommitmentRecords { get; set; }
         public DbSet<SealingRecord> SealingRecords { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; } // Add this line
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Bill> Bills { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Configure primary keys
             modelBuilder.Entity<CommitmentRecord>().HasKey(c => c.RecordId);
-            // Configure relationships and composite keys here if necessary
+            modelBuilder.Entity<ServiceDetail>().HasKey(sd => new { sd.ServiceId, sd.AssessmentStep });
+            modelBuilder.Entity<RequestDetail>().HasKey(rd => new { rd.RequestId, rd.ServiceId });
+
+            // Configure relationships
             modelBuilder.Entity<Request>()
                 .HasOne(r => r.Customer)
                 .WithMany()
@@ -43,9 +48,6 @@ namespace SWPApp.Models
                 .HasForeignKey(r => r.DiamondId);
 
             modelBuilder.Entity<RequestDetail>()
-                .HasKey(rd => new { rd.RequestId, rd.ServiceId });
-
-            modelBuilder.Entity<RequestDetail>()
                 .HasOne(rd => rd.Request)
                 .WithMany()
                 .HasForeignKey(rd => rd.RequestId);
@@ -56,9 +58,6 @@ namespace SWPApp.Models
                 .HasForeignKey(rd => rd.ServiceId);
 
             modelBuilder.Entity<ServiceDetail>()
-                .HasKey(sd => new { sd.ServiceId, sd.AssessmentStep });
-
-            modelBuilder.Entity<ServiceDetail>()
                 .HasOne(sd => sd.Service)
                 .WithMany()
                 .HasForeignKey(sd => sd.ServiceId);
@@ -67,6 +66,16 @@ namespace SWPApp.Models
                 .HasOne(f => f.Customer)
                 .WithMany()
                 .HasForeignKey(f => f.CustomerId);
+
+            modelBuilder.Entity<Bill>()
+                .HasOne(b => b.Customer)
+                .WithMany()
+                .HasForeignKey(b => b.CustomerId);
+
+            modelBuilder.Entity<Bill>()
+                .HasOne(b => b.Service)
+                .WithMany()
+                .HasForeignKey(b => b.ServiceId);
         }
     }
 }

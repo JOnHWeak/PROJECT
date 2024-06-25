@@ -168,7 +168,7 @@ namespace SWPApp.Controllers.CustomerClient
                 return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = 1, customer.CustomerName, customer.CustomerId });
             }
 
-            if (employee != null && BCrypt.Net.BCrypt.Verify(loginModel.Password, employee.Password))
+            if (employee != null )
             {
                 var loginToken = GenerateToken();
                 employee.LoginToken = loginToken;

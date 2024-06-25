@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
 using System.ComponentModel.DataAnnotations;
@@ -133,7 +132,21 @@ namespace SWPApp.Controllers
 
             return Ok(resultDto);
         }
-        //"gui ket qua kim cuong cho admin"
 
+        // Delete Result by RequestId action
+        [HttpDelete("delete/{requestId}")]
+        public async Task<IActionResult> DeleteByRequestId(int requestId)
+        {
+            var result = await _context.Results.FirstOrDefaultAsync(r => r.RequestId == requestId);
+            if (result == null)
+            {
+                return NotFound("Result not found for the specified RequestId.");
+            }
+
+            _context.Results.Remove(result);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Result deleted successfully." });
+        }
     }
 }
