@@ -1,76 +1,75 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace SWPApp.Controllers.CustomerClient
+namespace SWPApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BillController : ControllerBase
+    public class BillsController : ControllerBase
     {
         private readonly DiamondAssesmentSystemDBContext _context;
 
-        public BillController(DiamondAssesmentSystemDBContext context)
+        public BillsController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
         }
 
-        // GET api/bills/{billNumber}
-        [HttpGet("{billNumber}")]
-        public async Task<ActionResult<Bill>> GetBill(int billNumber)
+        public class BillModel
         {
-            var bill = await _context.Bills
-                .Include(b => b.Customer)
-                .Include(b => b.Service)
-                .FirstOrDefaultAsync(b => b.BillNumber == billNumber);
+            public int RequestId { get; set; } // This will act as BillNumber
+            public string CustomerName { get; set; }
+            public string Email { get; set; }
+            public string ServiceType { get; set; }
+            public decimal ServicePrice { get; set; }
+            public string Status { get; set; }
+            public int PaymentMethod { get; set; }
+        }
 
-            if (bill == null)
+        [HttpGet("{customerId}")]
+        public ActionResult<BillModel> GetByCustomerId(int customerId)
+        {
+            // Tìm kiếm yêu cầu dựa trên CustomerId
+            var request = _context.Requests.FirstOrDefault(r => r.CustomerId == customerId);
+            if (request == null)
             {
                 return NotFound();
             }
-            return bill;
-        }
 
-        // POST api/bills/create-by-customer/{customerName}
-        [HttpPost("create-by-customer/{customerName}")]
-        public async Task<ActionResult<Bill>> CreateBillByCustomerName(string customerName, [FromBody] Bill billDetails)
-        {
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(c => c.CustomerName.Equals(customerName, StringComparison.OrdinalIgnoreCase));
-
+            // Tìm kiếm khách hàng dựa trên CustomerId
+            var customer = _context.Customers.FirstOrDefault(c => c.CustomerId == customerId);
             if (customer == null)
             {
-                return NotFound("Customer not found.");
+                return NotFound();
             }
 
-            var service = await _context.Services
-                .FirstOrDefaultAsync(s => s.ServiceId == billDetails.ServiceId);
-
+            // Tìm kiếm dịch vụ dựa trên ServiceId
+            var service = _context.Services.FirstOrDefault(s => s.ServiceId == request.ServiceId);
             if (service == null)
             {
-                return NotFound("Service not found.");
+                return NotFound();
             }
 
-            var newBill = new Bill
+            // Tìm kiếm chi tiết yêu cầu dựa trên RequestId
+            var requestDetail = _context.RequestDetails.FirstOrDefault(rd => rd.RequestId == request.RequestId);
+            if (requestDetail == null)
             {
-                IssueDate = DateTime.Now,
-                CustomerId = customer.CustomerId,
-                Customer = customer,
-                ServiceId = service.ServiceId,
-                Service = service,
-                PaymentStatus = true, // Set to "đã thanh toán"
-                PaymentMethod = 1, // Set to "Chuyển khoản"
-                PaymentMethodDescription = null // Set to null
+                return NotFound();
+            }
+
+            // Tạo đối tượng BillModel và trả về
+            var result = new BillModel
+            {
+                RequestId = request.RequestId,
+                CustomerName = customer.CustomerName,
+                Email = customer.Email,
+                ServiceType = service.ServiceType,
+                ServicePrice = service.ServicePrice,
+                Status = request.Status,
+                PaymentMethod = requestDetail.PaymentMethod
             };
 
-            _context.Bills.Add(newBill);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetBill), new { billNumber = newBill.BillNumber }, newBill);
+            return Ok(result);
         }
     }
 }
-

@@ -22,7 +22,7 @@ namespace SWPApp.Models
         public string? IDCard { get; set; } // Nullable string for IDCard
 
         public string? Address { get; set; } // Nullable string for Address
-
+ 
         public bool Status { get; set; }
 
         public string? ResetToken { get; set; }

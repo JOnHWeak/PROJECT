@@ -5,15 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SWPApp.Models;
 
 #nullable disable
 
 namespace SWPApp.Migrations
 {
     [DbContext(typeof(DiamondAssesmentSystemDBContext))]
-    [Migration("20240622152302_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240626114452_AddBookingsTable")]
+    partial class AddBookingsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +23,41 @@ namespace SWPApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SWPApp.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IDCard")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("Bookings");
+                });
 
             modelBuilder.Entity("SWPApp.Models.Certificate", b =>
                 {
@@ -247,8 +281,9 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RequestId");
 
@@ -408,6 +443,17 @@ namespace SWPApp.Migrations
                     b.HasKey("ServiceId", "AssessmentStep");
 
                     b.ToTable("ServiceDetails");
+                });
+
+            modelBuilder.Entity("SWPApp.Models.Booking", b =>
+                {
+                    b.HasOne("SWPApp.Models.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SWPApp.Models.Certificate", b =>

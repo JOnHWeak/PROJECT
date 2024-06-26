@@ -4,7 +4,7 @@ using SWPApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SWPApp.Controllers.CustomerClient
+namespace SWPApp.Controllers.StaffClient
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -28,8 +28,7 @@ namespace SWPApp.Controllers.CustomerClient
                 var requestHistory = await _context.Requests
                     .Where(r => r.CustomerId == customerId)
                     .Include(r => r.Customer)
-                    .Include(r => r.Employee)
-                    .Include(r => r.Diamond)
+                    .Include(r => r.Employee)                    
                     .ToListAsync();
 
                 if (requestHistory != null && requestHistory.Count > 0)
