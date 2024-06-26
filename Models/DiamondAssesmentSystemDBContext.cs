@@ -30,16 +30,11 @@ public class DiamondAssesmentSystemDBContext : DbContext
             .WithMany()
             .HasForeignKey(r => r.CustomerId);
 
-        modelBuilder.Entity<Request>()
-            .HasOne(r => r.Employee)
-            .WithMany()
-            .HasForeignKey(r => r.EmployeeId);
-
-        // Xóa quan hệ với Diamond
+        // Xóa cấu hình liên quan đến EmployeeId
         // modelBuilder.Entity<Request>()
-        //     .HasOne(r => r.Diamond)
+        //     .HasOne(r => r.Employee)
         //     .WithMany()
-        //     .HasForeignKey(r => r.DiamondId);
+        //     .HasForeignKey(r => r.EmployeeId);
 
         modelBuilder.Entity<RequestDetail>()
             .HasKey(rd => new { rd.RequestId, rd.ServiceId });

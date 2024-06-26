@@ -196,14 +196,21 @@ namespace SWPApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"));
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DiamondId")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<string>("IDCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
@@ -223,8 +230,6 @@ namespace SWPApp.Migrations
                     b.HasKey("RequestId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Requests");
                 });
@@ -417,15 +422,7 @@ namespace SWPApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SWPApp.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("SWPApp.Models.RequestDetail", b =>

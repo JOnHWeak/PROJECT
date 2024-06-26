@@ -11,16 +11,26 @@ namespace SWPApp.Models
         public int RequestId { get; set; }
         public int CustomerId { get; set; }
         public DateTime RequestDate { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+     
+        public string? PhoneNumber { get; set; } // Nullable string for PhoneNumber
+
+        public string? IDCard { get; set; } // Nullable string for IDCard
+
+        public string? Address { get; set; } // Nullable string for Address
         public string ServiceType { get; set; }
-        public int EmployeeId { get; set; }
-        public int? DiamondId { get; set; }
+
         public string ServiceId { get; set; }
-        public string Status { get; set; } // Changed from bool to string
+        public string Status { get; set; }
 
         public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
-      
+
+       
     }
+
+
+
 
     public class RequestDetail
     {

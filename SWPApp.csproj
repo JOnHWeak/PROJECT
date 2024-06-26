@@ -63,8 +63,4 @@
     <None Include="wwwroot\homepage.html" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

@@ -16,7 +16,7 @@ namespace SWPApp.Models
 
         public string Password { get; set; }
 
-        [Phone]
+       
         public string? PhoneNumber { get; set; } // Nullable string for PhoneNumber
 
         public string? IDCard { get; set; } // Nullable string for IDCard

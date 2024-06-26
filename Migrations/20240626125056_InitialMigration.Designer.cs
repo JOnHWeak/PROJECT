@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SWPApp.Migrations
 {
     [DbContext(typeof(DiamondAssesmentSystemDBContext))]
-    [Migration("20240626120733_RemoveDiamondTable")]
-    partial class RemoveDiamondTable
+    [Migration("20240626125056_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,9 +202,6 @@ namespace SWPApp.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DiamondId")
-                        .HasColumnType("int");
-
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
@@ -226,8 +223,6 @@ namespace SWPApp.Migrations
                     b.HasKey("RequestId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Requests");
                 });
@@ -420,15 +415,7 @@ namespace SWPApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SWPApp.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("SWPApp.Models.RequestDetail", b =>

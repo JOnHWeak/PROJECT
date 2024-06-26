@@ -17,32 +17,43 @@ namespace SWPApp.Controllers.StaffClient
             _context = context;
         }
 
-        [HttpGet("history/{customerId}")]
-        public async Task<IActionResult> GetRequestHistory(int customerId)
+        // Retrieve the specific request for the customer that is marked as "Đã thanh toán"
+        [HttpGet("history/{customerId}/{requestId}")]
+        public async Task<IActionResult> GetRequestHistory(int customerId, int requestId)
         {
-            // Check if the customer exists and is logged in
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId == customerId && c.Status == true && c.LoginToken != null);
-            if (customer != null)
-            {
-                // Retrieve the request history for the customer
-                var requestHistory = await _context.Requests
-                    .Where(r => r.CustomerId == customerId)
-                    .Include(r => r.Customer)
-                    .Include(r => r.Employee)                    
-                    .ToListAsync();
+            // Retrieve the specific request for the customer that is marked as "Đã thanh toán"
+            var request = await _context.Requests
+                .Where(r => r.CustomerId == customerId && r.RequestId == requestId && r.Status == "Đã thanh toán")
+                .Include(r => r.Customer)
+                .FirstOrDefaultAsync(); // Use FirstOrDefaultAsync to get a single record
 
-                if (requestHistory != null && requestHistory.Count > 0)
-                {
-                    return Ok(requestHistory);
-                }
-                else
-                {
-                    return NotFound("No request history found for this customer.");
-                }
+            if (request != null)
+            {
+                return Ok(request);
             }
             else
             {
-                return Unauthorized("You must login to use this service.");
+                return NotFound("No request with the specified ID and payment status found for this customer.");
+            }
+        }
+
+        // Retrieve the specific request for the customer that is marked as "Đã nhận kim cương và đang xử lí"
+        [HttpGet("history/{customerId}/{requestId}/processing")]
+        public async Task<IActionResult> GetProcessingRequestHistory(int customerId, int requestId)
+        {
+            // Retrieve the specific request for the customer that is marked as "Đã nhận kim cương và đang xử lí"
+            var request = await _context.Requests
+                .Where(r => r.CustomerId == customerId && r.RequestId == requestId && r.Status == "Đã nhận kim cương và đang xử lí")
+                .Include(r => r.Customer)
+                .FirstOrDefaultAsync(); // Use FirstOrDefaultAsync to get a single record
+
+            if (request != null)
+            {
+                return Ok(request);
+            }
+            else
+            {
+                return NotFound("No request with the specified ID and status found for this customer.");
             }
         }
     }

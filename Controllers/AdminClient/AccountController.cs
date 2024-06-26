@@ -237,37 +237,12 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(requestsWithDetails);
         }
-        //list result data sau khi staff gửi admin
-        [HttpGet("list-results")]
-        public async Task<ActionResult<IEnumerable<Result>>> ListResults()
-        {
-            var results = await _context.Results
-                .Select(r => new
-                {
-                    r.ResultId,
-                    r.DiamondId,
-                    r.RequestId,
-                    r.DiamondOrigin,
-                    r.Shape,
-                    r.Measurements,
-                    r.CaratWeight,
-                    r.Color,
-                    r.Clarity,
-                    r.Cut,
-                    r.Proportions,
-                    r.Polish,
-                    r.Symmetry,
-                    r.Fluorescence
-                })
-                .ToListAsync();
-
-            return Ok(results);
-        }
+        
         //accept status = "kiểm định thành công "        
-        [HttpPut("update-request-status/{id}")]
-        public async Task<IActionResult> UpdateRequestStatus(int id)
+        [HttpPut("update-request-status/{requestid}")]
+        public async Task<IActionResult> UpdateRequestStatus(int requestid)
         {
-            var request = await _context.Requests.FindAsync(id);
+            var request = await _context.Requests.FindAsync(requestid);
             if (request == null)
             {
                 return NotFound();

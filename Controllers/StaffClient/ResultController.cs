@@ -8,7 +8,7 @@ namespace SWPApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CreateResultController : ControllerBase
+    public class ResultController : ControllerBase
     {
         public class ResultDTO
         {
@@ -31,7 +31,7 @@ namespace SWPApp.Controllers
 
         private readonly DiamondAssesmentSystemDBContext _context;
 
-        public CreateResultController(DiamondAssesmentSystemDBContext context)
+        public ResultController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
         }
