@@ -5,7 +5,7 @@ using SWPApp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.CustomerClient
 {
     [Route("api/[controller]")]
     [ApiController]

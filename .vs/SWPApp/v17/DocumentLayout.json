@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\PROJECT-TEST\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\certificatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\certificatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\models\\certificate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\certificate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\adminclient\\listallresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\adminclient\\listallresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
@@ -17,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\adminclient\\listallresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\adminclient\\listallresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\staffclient\\resultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,19 +103,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ResultClientController.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\ResultClientController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerClient\\ResultClientController.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\ResultClientController.cs",
+              "RelativeToolTip": "Controllers\\CustomerClient\\ResultClientController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T10:34:35.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Result.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Result.cs",
+              "RelativeDocumentMoniker": "Models\\Result.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Models\\Result.cs",
+              "RelativeToolTip": "Models\\Result.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAADwvxsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T10:23:31.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Certificate.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Certificate.cs",
+              "RelativeDocumentMoniker": "Models\\Certificate.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Models\\Certificate.cs",
+              "RelativeToolTip": "Models\\Certificate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T10:23:29.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CertificateController.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CertificateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerClient\\CertificateController.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CertificateController.cs",
+              "RelativeToolTip": "Controllers\\CustomerClient\\CertificateController.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAwwBAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T10:20:49.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ReadMe.md",
               "DocumentMoniker": "D:\\PROJECT-TEST\\ReadMe.md",
               "RelativeDocumentMoniker": "ReadMe.md",
               "ToolTip": "D:\\PROJECT-TEST\\ReadMe.md",
               "RelativeToolTip": "ReadMe.md",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAUwBcAAAAAAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAUwBEAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2024-06-27T10:15:29.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "HistoryofRequest(Customer).cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\HistoryofRequest(Customer).cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\HistoryofRequest(Customer).cs",
@@ -117,13 +185,14 @@
               "RelativeDocumentMoniker": "Controllers\\AdminClient\\ListAllResultController.cs",
               "ToolTip": "D:\\PROJECT-TEST\\Controllers\\AdminClient\\ListAllResultController.cs",
               "RelativeToolTip": "Controllers\\AdminClient\\ListAllResultController.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAxwDEAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T10:12:14.949Z"
+              "WhenOpened": "2024-06-27T10:12:14.949Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "ResultController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\StaffClient\\ResultController.cs",
               "RelativeDocumentMoniker": "Controllers\\StaffClient\\ResultController.cs",
@@ -135,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "HistoryRequestController(Staff).cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
               "RelativeDocumentMoniker": "Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
@@ -143,12 +212,11 @@
               "RelativeToolTip": "Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
               "ViewState": "AQIAACwAAAAAAAAAAAAowDUAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T09:53:02.075Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-27T09:53:02.075Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "AcceptStatusController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\StaffClient\\AcceptStatusController.cs",
               "RelativeDocumentMoniker": "Controllers\\StaffClient\\AcceptStatusController.cs",
@@ -160,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\AdminClient\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminClient\\AccountController.cs",
@@ -172,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "DiamondAssesmentSystemDBContext.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\DiamondAssesmentSystemDBContext.cs",
               "RelativeDocumentMoniker": "Models\\DiamondAssesmentSystemDBContext.cs",
@@ -184,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "Request.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Request.cs",
               "RelativeDocumentMoniker": "Models\\Request.cs",
@@ -196,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Employee.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "Models\\Employee.cs",
@@ -208,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "CreateRequestController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CreateRequestController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\CreateRequestController.cs",
@@ -220,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\PaymentController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\PaymentController.cs",
