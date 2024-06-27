@@ -4,7 +4,7 @@ using SWPApp.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.CustomerClient
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -43,22 +43,36 @@ namespace SWPApp.Controllers
             var newRequest = new Request
             {
                 CustomerId = request.CustomerId,
+                EmployeeId = request.EmployeeId, // Assign EmployeeId from request (may be null)
                 RequestDate = DateTime.Now,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 IDCard = request.IDCard,
                 Address = request.Address,
-                ServiceType = service.ServiceType, // lấy từ bảng Service
                 ServiceId = request.ServiceId,
-                Status = "Đã thanh toán" // Hoặc bất kỳ trạng thái mặc định nào
+                Status = "Chờ thanh toán" // Hoặc bất kỳ trạng thái mặc định nào
             };
 
             _context.Requests.Add(newRequest);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetRequestById), new { id = newRequest.RequestId }, newRequest);
+            // Xác định mô tả gói dịch vụ dựa trên ServiceId
+            string packageDescription = service.ServiceId switch
+            {
+                "1" => "Gói cơ bản",
+                "2" => "Gói nâng cao",
+                "3" => "Gói cao cấp",
+                _ => "Gói không xác định"
+            };
+
+            return CreatedAtAction(nameof(GetRequestById), new { id = newRequest.RequestId }, new
+            {
+                Request = newRequest,
+                PackageDescription = packageDescription
+            });
         }
 
+        //Search By RequestId
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRequestById(int id)
         {
@@ -70,6 +84,11 @@ namespace SWPApp.Controllers
             }
 
             return Ok(request);
+            
         }
+        //List all request if (Staff are login)
+
+
+        
     }
 }
