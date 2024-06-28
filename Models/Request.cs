@@ -15,7 +15,7 @@ namespace SWPApp.Models
 
         public DateTime RequestDate { get; set; }
 
-        [EmailAddress]
+        
         public string Email { get; set; }
 
         public string? PhoneNumber { get; set; }

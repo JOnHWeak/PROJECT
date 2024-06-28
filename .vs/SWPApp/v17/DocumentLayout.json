@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "D:\\PROJECT-TEST\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\certificatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\certificatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\sealingrecordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\sealingrecordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\models\\sealingrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\sealingrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\models\\certificate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\certificate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\sealingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:sealingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\models\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\project-test\\controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +74,84 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SealingRecordController.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\SealingRecordController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerClient\\SealingRecordController.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\SealingRecordController.cs",
+              "RelativeToolTip": "Controllers\\CustomerClient\\SealingRecordController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAA3wC0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T14:12:50.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SealingService.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\SealingService.cs",
+              "RelativeDocumentMoniker": "SealingService.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\SealingService.cs",
+              "RelativeToolTip": "SealingService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T14:05:29.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SealingRecord.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\SealingRecord.cs",
+              "RelativeDocumentMoniker": "Models\\SealingRecord.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Models\\SealingRecord.cs",
+              "RelativeToolTip": "Models\\SealingRecord.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T13:40:05.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Certificate.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Certificate.cs",
+              "RelativeDocumentMoniker": "Models\\Certificate.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Models\\Certificate.cs",
+              "RelativeToolTip": "Models\\Certificate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T13:35:58.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Request.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Models\\Request.cs",
+              "RelativeDocumentMoniker": "Models\\Request.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Models\\Request.cs",
+              "RelativeToolTip": "Models\\Request.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T13:19:05.38Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CertificateController.cs",
+              "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CertificateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerClient\\CertificateController.cs",
+              "ToolTip": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CertificateController.cs",
+              "RelativeToolTip": "Controllers\\CustomerClient\\CertificateController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T13:12:10.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PROJECT-TEST\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -58,12 +159,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-28T12:58:12.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-28T12:58:12.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\AuthController.cs",
@@ -71,18 +171,17 @@
               "RelativeToolTip": "Controllers\\CustomerClient\\AuthController.cs",
               "ViewState": "AQIAABUBAAAAAAAAAAA+wD0BAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T12:51:53.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-28T12:51:53.911Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "CreateRequestController.cs",
               "DocumentMoniker": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CreateRequestController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\CreateRequestController.cs",
               "ToolTip": "D:\\PROJECT-TEST\\Controllers\\CustomerClient\\CreateRequestController.cs",
               "RelativeToolTip": "Controllers\\CustomerClient\\CreateRequestController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAA8wBoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T12:26:39.528Z",
               "EditorCaption": ""

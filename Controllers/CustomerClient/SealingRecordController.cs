@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
 using System.Threading.Tasks;
 
-namespace SWPApp.Controllers
+namespace SWPApp.Controllers.CustomerClient
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +16,6 @@ namespace SWPApp.Controllers
             _context = context;
         }
 
-        // Create SealingRecord
         [HttpPost("create-sealing")]
         public async Task<IActionResult> CreateSealing([FromBody] SealingRecord sealingRecord)
         {
@@ -25,11 +24,26 @@ namespace SWPApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            var today = DateTime.Today;
+
+            // Check if there's any certificate with IssueDate + 10 days equals today
+            var certificate = await _context.Certificates
+                .FirstOrDefaultAsync(c => c.ResultId == sealingRecord.RequestId && c.IssueDate.AddDays(10) == today);
+
+            if (certificate == null)
+            {
+                return BadRequest("No certificate found with IssueDate + 10 days equals today for the given RequestId");
+            }
+
+            // Proceed with creating the sealing record
+            sealingRecord.SealDate = today; // Set SealDate to today
+
             await _context.SealingRecords.AddAsync(sealingRecord);
             await _context.SaveChangesAsync();
 
             return Ok("Sealing record created successfully");
         }
+
 
         // Get SealingRecord by Id
         [HttpGet("get-sealing/{id}")]

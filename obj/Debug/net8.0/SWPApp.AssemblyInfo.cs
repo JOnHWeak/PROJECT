@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SWPApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5533b8a9451c63eaa6a4ee12bb4e4654f555337a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f24663a0d897b2036b729535c54a17efed81c63")]
 [assembly: System.Reflection.AssemblyProductAttribute("SWPApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SWPApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
