@@ -136,14 +136,52 @@ namespace SWPApp.Controllers.CustomerClient
                 return StatusCode(500, "An error occurred while confirming the email.");
             }
 
+            // Check if the user is also an employee and get the role if applicable
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email.ToLower() == customer.Email.ToLower());
+
+            string roleSpecificMessage;
+            int roleValue;
+
+            if (employee != null)
+            {
+                if (employee.Role == null)
+                {
+                    roleSpecificMessage = "Role 1";
+                    roleValue = 1;
+                }
+                else if (employee.Role == 0)
+                {
+                    roleSpecificMessage = "Role 2";
+                    roleValue = 2;
+                }
+                else if (employee.Role == 1)
+                {
+                    roleSpecificMessage = "Role 3";
+                    roleValue = 3;
+                }
+                else
+                {
+                    roleSpecificMessage = "Login successful";
+                    roleValue = (int)employee.Role; // Use the actual role value for any other roles
+                }
+            }
+            else
+            {
+                // Default role for customers
+                roleSpecificMessage = "Customer";
+                roleValue = 0;
+            }
+
             return Ok(new
             {
                 Message = "Email confirmed successfully. You are now logged in.",
                 LoginToken = loginToken,
+                Role = roleValue,
                 customer.CustomerName,
                 customer.CustomerId
             });
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
