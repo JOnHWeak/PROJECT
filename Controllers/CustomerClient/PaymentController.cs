@@ -9,6 +9,11 @@ namespace SWPApp.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
+        public class PaymentDTO
+        {
+            public int RequestId { get; set; }
+            public int CustomerId { get; set; }
+        }
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public PaymentController(DiamondAssesmentSystemDBContext context)
@@ -18,9 +23,9 @@ namespace SWPApp.Controllers
 
         // Tôi đã thanh toán
         [HttpPost("UpdatePaymentStatus")]
-        public async Task<IActionResult> UpdatePaymentStatus([FromBody] Request request)
+        public async Task<IActionResult> UpdatePaymentStatus([FromBody] PaymentDTO paymentDto)
         {
-            var existingRequest = await _context.Requests.FindAsync(request.RequestId);
+            var existingRequest = await _context.Requests.FindAsync(paymentDto.RequestId);
 
             if (existingRequest == null)
             {
