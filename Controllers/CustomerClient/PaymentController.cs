@@ -20,7 +20,6 @@ namespace SWPApp.Controllers
         [HttpPost("UpdatePaymentStatus")]
         public async Task<IActionResult> UpdatePaymentStatus([FromBody] Request request)
         {
-            // Kiểm tra RequestId có tồn tại trong bảng Request không
             var existingRequest = await _context.Requests.FindAsync(request.RequestId);
 
             if (existingRequest == null)
@@ -28,22 +27,15 @@ namespace SWPApp.Controllers
                 return BadRequest("Invalid RequestId");
             }
 
-            // Lấy ServiceId từ bảng Request
-            var serviceId = existingRequest.ServiceId;
-
-            // Kiểm tra ServiceId có tồn tại trong bảng Service không
-            var service = await _context.Services.FindAsync(serviceId);
-            if (service == null)
-            {
-                return BadRequest("Invalid ServiceId");
-            }
+            // Assuming ServiceId is always valid and exists
+            var service = await _context.Services.FindAsync(existingRequest.ServiceId);
 
             // Cập nhật trạng thái của Request thành "Đã thanh toán"
             existingRequest.Status = "Đã thanh toán";
             await _context.SaveChangesAsync();
 
             // Xác định mô tả gói dịch vụ dựa trên ServiceId
-            string packageDescription = serviceId switch
+            string packageDescription = existingRequest.ServiceId switch
             {
                 "1" => "Gói cơ bản",
                 "2" => "Gói nâng cao",
