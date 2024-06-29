@@ -12,11 +12,9 @@ namespace SWPApp.Models
 
         public int? EmployeeId { get; set; } // Nullable property for EmployeeId
 
-
         public DateTime RequestDate { get; set; }
 
-        
-        public string Email { get; set; }
+        public string? Email { get; set; } // Nullable Email property
 
         public string? PhoneNumber { get; set; }
 
