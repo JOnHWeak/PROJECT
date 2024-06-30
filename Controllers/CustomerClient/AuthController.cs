@@ -136,14 +136,14 @@ namespace SWPApp.Controllers.CustomerClient
                 return StatusCode(500, "An error occurred while confirming the email.");
             }
 
-
-
             return Ok(new
             {
-                Message = "Email confirmed successfully. You are now logged in. Role = 1",                
+                Message = "1",
+                CustomerId = customer.CustomerId,
+                CustomerName = customer.CustomerName
             });
-
         }
+
 
 
         [HttpPost("login")]
