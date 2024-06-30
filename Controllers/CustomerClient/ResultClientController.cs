@@ -25,9 +25,9 @@ namespace SWPApp.Controllers.CustomerClient
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Result>> GetResult(int id)
+        public async Task<ActionResult<Result>> GetResult(int resultid)
         {
-            var result = await _context.Results.FindAsync(id);
+            var result = await _context.Results.FindAsync(resultid);
 
             if (result == null)
             {

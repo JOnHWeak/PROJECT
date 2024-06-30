@@ -114,8 +114,7 @@ namespace SWPApp.Controllers
 
             var resultDto = new ResultDTO
             {
-                ResultId = result.ResultId,
-                DiamondId = result.DiamondId,
+                ResultId = result.ResultId,              
                 RequestId = result.RequestId,
                 DiamondOrigin = result.DiamondOrigin,
                 Shape = result.Shape,
