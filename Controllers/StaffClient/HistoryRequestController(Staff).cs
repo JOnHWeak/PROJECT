@@ -28,16 +28,8 @@ namespace SWPApp.Controllers.StaffClient
                 .Include(r => r.Employee)
                 .ToListAsync();
 
-            if (requests != null && requests.Any())
-            {
-                return Ok(requests);
-            }
-            else
-            {
-                return NotFound("Không tìm thấy yêu cầu với trạng thái Đã thanh toán.");
-            }
+            return Ok(requests ?? new List<Request>());
         }
-
 
         // Danh sách đơn có trạng thái là "Đã nhận kim cương và đang xử lí"
         [HttpGet("history/processing")]
@@ -46,17 +38,10 @@ namespace SWPApp.Controllers.StaffClient
             var requests = await _context.Requests
                 .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
                 .Include(r => r.Customer)
-                .Include(r => r.Employee)                
+                .Include(r => r.Employee)
                 .ToListAsync();
 
-            if (requests != null && requests.Any())
-            {
-                return Ok(requests);
-            }
-            else
-            {
-                return NotFound("Không tìm thấy yêu cầu với trạng thái Đã nhận kim cương và đang xử lí và vai trò nhân viên được chỉ định.");
-            }
+            return Ok(requests ?? new List<Request>());
         }
     }
 }
