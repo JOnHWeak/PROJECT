@@ -57,7 +57,16 @@ namespace SWPApp.Controllers
             await _context.Certificates.AddAsync(certificate);
             await _context.SaveChangesAsync();
 
-            return Ok("Certificate created successfully");
+            // Create a response DTO
+            var response = new Certificate
+            {
+                CertificateId = certificate.CertificateId,
+                ResultId = certificate.ResultId,
+                IssueDate = certificate.IssueDate,
+                
+            };
+
+            return Ok(response);
         }
 
 

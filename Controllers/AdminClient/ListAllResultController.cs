@@ -14,15 +14,15 @@ namespace SWPApp.Controllers.AdminClient
         {
             _context = context;
         }
-        //list result data sau khi staff gửi admin
         [HttpGet("list-results")]
         public async Task<ActionResult<IEnumerable<Result>>> ListResults()
         {
             var results = await _context.Results
+                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công")
                 .Select(r => new
                 {
                     r.ResultId,
-                    r.DiamondId,  // Thêm DiamondId vào đây
+                    r.DiamondId,
                     r.RequestId,
                     r.DiamondOrigin,
                     r.Shape,
@@ -34,12 +34,14 @@ namespace SWPApp.Controllers.AdminClient
                     r.Proportions,
                     r.Polish,
                     r.Symmetry,
-                    r.Fluorescence
+                    r.Fluorescence,
+                    RequestStatus = r.Request.Status // Include the status in the response
                 })
                 .ToListAsync();
 
             return Ok(results);
         }
+
 
 
         //accept status = "kiểm định thành công "        
