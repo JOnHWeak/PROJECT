@@ -605,3 +605,9 @@ D:\PROJECT-TEST\bin\Debug\net8.0\itext.styledxmlparser.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\itext.svg.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\itext.commons.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\PdfSharpCore.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\HtmlRenderer.Core.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\HtmlRenderer.PdfSharp.Core.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\SixLabors.Core.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\SixLabors.Fonts.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\SixLabors.ImageSharp.dll
