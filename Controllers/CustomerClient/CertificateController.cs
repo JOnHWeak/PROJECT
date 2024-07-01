@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SWPApp.DTO;
+﻿using System;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using SWPApp.Models;
-using System.Threading.Tasks;
 
 namespace SWPApp.Controllers
 {
@@ -10,121 +12,40 @@ namespace SWPApp.Controllers
     [ApiController]
     public class CertificateController : ControllerBase
     {
-        public class CertificateDTO
+        [HttpGet("pdf")]
+        public IActionResult GetCertificatePdf(int certificateId)
         {
-            public int ResultId { get; set; }
-            public DateTime IssueDate { get; set; }
-            
-        }
-
-        private readonly DiamondAssesmentSystemDBContext _context;
-
-        public CertificateController(DiamondAssesmentSystemDBContext context)
-        {
-            _context = context;
-        }
-
-
-
-        //Sau khi status="kiểm định thành công, tự động xuất certificate
-        [HttpPost("create-certificate")]
-        public async Task<IActionResult> CreateCertificate([FromBody] CertificateDTO certificateDTO)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Check if the Result exists and has the correct status
-            var result = await _context.Results
-                .Include(r => r.Request)
-                .FirstOrDefaultAsync(r => r.ResultId == certificateDTO.ResultId && r.Request.Status == "kiểm định thành công");
-
-            if (result == null)
-            {
-                return NotFound("Result not found or request status is not 'kiểm định thành công'");
-            }
-
-            // Create the certificate
+            // Fetch the certificate from the database (mock data for demonstration)
             var certificate = new Certificate
             {
-                ResultId = certificateDTO.ResultId,
-                IssueDate = certificateDTO.IssueDate,
-                Result = result
-                // Map other properties if needed
+                CertificateId = certificateId,
+                ResultId = 123,
+                IssueDate = DateTime.Now,
+                Result = new Result { /* populate the Result object as needed */ }
             };
 
-            await _context.Certificates.AddAsync(certificate);
-            await _context.SaveChangesAsync();
-
-            // Create a response DTO
-            var response = new Certificate
+            // Create a memory stream to hold the PDF data
+            using (var memoryStream = new MemoryStream())
             {
-                CertificateId = certificate.CertificateId,
-                ResultId = certificate.ResultId,
-                IssueDate = certificate.IssueDate,
-                
-            };
+                // Initialize PDF writer and document
+                var writer = new PdfWriter(memoryStream);
+                var pdf = new PdfDocument(writer);
+                var document = new Document(pdf);
 
-            return Ok(response);
-        }
+                // Add content to the PDF
+                document.Add(new Paragraph("Certificate Details"));
+                document.Add(new Paragraph($"Certificate ID: {certificate.CertificateId}"));
+                document.Add(new Paragraph($"Result ID: {certificate.ResultId}"));
+                document.Add(new Paragraph($"Issue Date: {certificate.IssueDate.ToShortDateString()}"));
+                // Add more fields as needed from the Result object
 
+                document.Close();
+                writer.Close();
 
-        [HttpGet("get-certificate/{certificateId}")]
-        public async Task<IActionResult> GetCertificate(int certificateId)
-        {
-            var certificate = await _context.Certificates
-                .Include(c => c.Result)
-                .ThenInclude(r => r.Request)
-                .FirstOrDefaultAsync(c => c.CertificateId == certificateId && c.Result.Request.Status == "kiểm định thành công");
-
-            if (certificate == null)
-            {
-                return NotFound("Certificate not found or request status is not 'kiểm định thành công'");
+                // Return the PDF as a file result
+                var fileBytes = memoryStream.ToArray();
+                return File(fileBytes, "application/pdf", "Certificate.pdf");
             }
-
-            return Ok(certificate);
-        }
-        
-        [HttpPut("update-certificate/{certificateId}")]
-        public async Task<IActionResult> UpdateCertificate(int certificateId, [FromBody] CertificateDTO certificateDTO)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var certificate = await _context.Certificates.FindAsync(certificateId);
-
-            if (certificate == null)
-            {
-                return NotFound("Certificate not found");
-            }
-
-            certificate.ResultId = certificateDTO.ResultId;
-            certificate.IssueDate = certificateDTO.IssueDate;
-            // Update other properties
-
-            _context.Certificates.Update(certificate);
-            await _context.SaveChangesAsync();
-
-            return Ok("Certificate updated successfully");
-        }
-
-        [HttpDelete("delete-certificate/{certificateId}")]
-        public async Task<IActionResult> DeleteCertificate(int certificateId)
-        {
-            var certificate = await _context.Certificates.FindAsync(certificateId);
-
-            if (certificate == null)
-            {
-                return NotFound("Certificate not found");
-            }
-
-            _context.Certificates.Remove(certificate);
-            await _context.SaveChangesAsync();
-
-            return Ok("Certificate deleted successfully");
         }
     }
 }

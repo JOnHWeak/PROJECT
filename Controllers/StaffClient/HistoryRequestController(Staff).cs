@@ -20,26 +20,40 @@ namespace SWPApp.Controllers.StaffClient
 
         // Danh sách đơn có trạng thái là "Đã thanh toán"
         [HttpGet("history/paid")]
-        public async Task<IActionResult> GetPaidRequests()
+        public async Task<IActionResult> GetPaidRequests([FromQuery] int? employeeId)
         {
-            var requests = await _context.Requests
+            var query = _context.Requests
                 .Where(r => r.Status == "Đã thanh toán")
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.EmployeeId == employeeId.Value);
+            }
+
+            var requests = await query.ToListAsync();
 
             return Ok(requests ?? new List<Request>());
         }
 
         // Danh sách đơn có trạng thái là "Đã nhận kim cương và đang xử lí"
         [HttpGet("history/processing")]
-        public async Task<IActionResult> GetProcessingRequests()
+        public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employeeId)
         {
-            var requests = await _context.Requests
+            var query = _context.Requests
                 .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.EmployeeId == employeeId.Value);
+            }
+
+            var requests = await query.ToListAsync();
 
             return Ok(requests ?? new List<Request>());
         }
