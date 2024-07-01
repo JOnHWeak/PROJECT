@@ -103,12 +103,8 @@ namespace SWPApp.Controllers.AdminClient
 
         // Update Employee
         [HttpPut("update-employee/{employeeid}")]
-        public async Task<IActionResult> UpdateEmployee(int employeeid, [FromBody] Employee updatedEmployee)
-        {
-            if (employeeid != updatedEmployee.EmployeeId)
-            {
-                return BadRequest("Employee ID mismatch");
-            }
+        public async Task<IActionResult> UpdateEmployee(int employeeid, [FromBody] Employee updatedEmployee)       {
+            
 
             var employee = await _context.Employees.FindAsync(employeeid);
             if (employee == null)
